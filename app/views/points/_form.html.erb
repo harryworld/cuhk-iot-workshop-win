@@ -1,0 +1,41 @@
+<%= form_for(@point) do |f| %>
+  <% if @point.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@point.errors.count, "error") %> prohibited this point from being saved:</h2>
+
+      <ul>
+      <% @point.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :temperature %><br>
+    <%= f.text_field :temperature %>
+  </div>
+  <div class="field">
+    <%= f.label :pm25 %><br>
+    <%= f.text_field :pm25 %>
+  </div>
+  <div class="field">
+    <%= f.label :light %><br>
+    <%= f.text_field :light %>
+  </div>
+  <div class="field">
+    <%= f.label :analog %><br>
+    <%= f.text_field :analog %>
+  </div>
+  <div class="field">
+    <%= f.label :digital %><br>
+    <%= f.text_field :digital %>
+  </div>
+  <div class="field">
+    <%= f.label :group %><br>
+    <%= f.number_field :group %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
