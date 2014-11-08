@@ -7,6 +7,23 @@ class PointsController < ApplicationController
     @points = Point.all
   end
 
+  def latest
+    unless params[:id].nil?
+      if params[:group].nil?
+        @points = Point.where 'id > :last_id', :last_id => params[:id]
+      else
+        @points = Point.where 'id > :last_id and "group" = :group', :last_id => params[:id], :group => params[:group]
+      end
+    else
+      if params[:group].blank?
+        @points = Point.last(20)
+      else
+        @points = Point.where(group: params[:group]).last(20)
+      end
+    end
+    render :index
+  end
+
   # GET /points/1
   # GET /points/1.json
   def show

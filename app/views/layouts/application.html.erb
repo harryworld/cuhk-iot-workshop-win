@@ -8,7 +8,49 @@
 </head>
 <body>
 
-<%= yield %>
+    <div class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <%= link_to "CUHK Air Quality", root_path, :class => 'navbar-brand', 'data-no-turbolink' => true %>
+        <div class="navbar-collapse collapse navbar-responsive-collapse">
+          <ul class="nav navbar-nav">
+            <li><%= link_to "Last 20 Points", latest_points_path %></li>
+            <li><%= link_to "Points", points_path  %></li>
+            <li><%= link_to "New Point", new_point_path  %></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9">
+          <%= yield %>
+        </div>
+        <div class="col-lg-3">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Sidebar</li>
+              <li><%= link_to "Last 20 Points", latest_points_path %></li>
+              <li><%= link_to "Points", points_path %></li>
+              <li><%= link_to "New Point", new_point_path  %></li>
+              <hr/>
+              <li><%= link_to "All Groups", root_path  %></li>
+              <% (1..8).each do |num| %>
+                <li><%= link_to "Group #{num}", :controller => :welcome, :action => :show, :id => num  %></li>
+              <% end %>
+            </ul>
+          </div><!--/.well -->
+        </div><!--/span-->
+      </div><!--/row-->
+
+      <footer>
+        <p>&copy; STAY REAL LIMITED 2014</p>
+      </footer>
 
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag '//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js' %>
